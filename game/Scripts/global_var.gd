@@ -3,20 +3,7 @@ extends Node2D
 var supply = 5
 var steel = 4
 var wood = 3
-var money = 10
+var money = 0
+
 var soldier = []
-var weapon = []
-var armor = []
-var day = 1
-
-var soldier_list = []
-
-var tile_to_army = {}
-var tile_to_enemy = {}
-var tile_info = {}
-
-var selected = []
-
-func _ready():
-	for i in range(100):
-		soldier_list.append(100-i)
+var equipment = []

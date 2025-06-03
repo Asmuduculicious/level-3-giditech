@@ -1,12 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://ddkgpqhjvcfsq"]
+[gd_scene load_steps=3 format=3 uid="uid://ddkgpqhjvcfsq"]
 
 [ext_resource type="Script" uid="uid://b3ji0box41n8d" path="res://Scripts/Interface.gd" id="1_5oaki"]
-[ext_resource type="PackedScene" uid="uid://bug0dy53yxj8x" path="res://Scenes/soldier_board.tscn" id="2_q85f0"]
 [ext_resource type="Script" uid="uid://dbstd1e4gb0hx" path="res://Scripts/craft_button.gd" id="3_p1mel"]
-[ext_resource type="PackedScene" uid="uid://cijj0ile3jv6k" path="res://Scenes/army.tscn" id="4_o6y36"]
-[ext_resource type="Script" uid="uid://p00b17oa1j00" path="res://Scripts/draft_button.gd" id="4_u5uhc"]
 
-[node name="UI" type="CanvasLayer" node_paths=PackedStringArray("supply", "steel", "wood", "money", "craft_button", "draft_button", "trade_button", "craft_menu", "draft_menu", "trade_menu", "soldier_list")]
+[node name="UI" type="CanvasLayer" node_paths=PackedStringArray("supply", "steel", "wood", "money", "craft_button", "draft_button", "trade_button")]
 script = ExtResource("1_5oaki")
 supply = NodePath("Top Bar/ColorRect/HBoxContainer2/Supply")
 steel = NodePath("Top Bar/ColorRect/HBoxContainer2/Steel")
@@ -15,10 +12,6 @@ money = NodePath("Top Bar/ColorRect/HBoxContainer2/Money")
 craft_button = NodePath("Right Bar/Background/VBoxContainer/Crafting Button")
 draft_button = NodePath("Right Bar/Background/VBoxContainer/Drafting Button")
 trade_button = NodePath("Right Bar/Background/VBoxContainer/Trading Button")
-craft_menu = NodePath("Crafting Menu")
-draft_menu = NodePath("Drafting Menu")
-trade_menu = NodePath("Trading")
-soldier_list = NodePath("Drafting Menu/ColorRect9/VBoxContainer")
 
 [node name="Top Bar" type="Control" parent="."]
 layout_mode = 3
@@ -150,6 +143,7 @@ size_flags_vertical = 3
 text = "building"
 
 [node name="Crafting Menu" type="Control" parent="."]
+visible = false
 layout_mode = 3
 anchors_preset = 0
 
@@ -193,19 +187,15 @@ color = Color(0.391185, 0.391185, 0.391185, 1)
 layout_mode = 0
 offset_right = 320.0
 offset_bottom = 71.0
-text = "Level 1 Gun"
+text = "Stuff"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Button" type="Button" parent="Crafting Menu/ColorRect9/HBoxContainer/ColorRect/VBoxContainer" node_paths=PackedStringArray("parent")]
 layout_mode = 2
 size_flags_vertical = 3
-text = "3 wood"
 script = ExtResource("3_p1mel")
-wood = 3
-product = "Level 1 gun"
 parent = NodePath("../../../../../..")
-weapon = true
 
 [node name="ColorRect2" type="ColorRect" parent="Crafting Menu/ColorRect9/HBoxContainer/ColorRect/VBoxContainer"]
 layout_mode = 2
@@ -216,20 +206,15 @@ color = Color(0.391185, 0.391185, 0.391185, 1)
 layout_mode = 0
 offset_right = 320.0
 offset_bottom = 71.0
-text = "Level 2 Gun"
+text = "Stuff"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Button2" type="Button" parent="Crafting Menu/ColorRect9/HBoxContainer/ColorRect/VBoxContainer" node_paths=PackedStringArray("parent")]
 layout_mode = 2
 size_flags_vertical = 3
-text = "2 steel 2 wood"
 script = ExtResource("3_p1mel")
-wood = 2
-steel = 2
-product = "Level 2 gun"
 parent = NodePath("../../../../../..")
-weapon = true
 
 [node name="ColorRect3" type="ColorRect" parent="Crafting Menu/ColorRect9/HBoxContainer/ColorRect/VBoxContainer"]
 layout_mode = 2
@@ -240,19 +225,15 @@ color = Color(0.391185, 0.391185, 0.391185, 1)
 layout_mode = 0
 offset_right = 320.0
 offset_bottom = 71.0
-text = "Level 3 Gun"
+text = "Stuff"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Button3" type="Button" parent="Crafting Menu/ColorRect9/HBoxContainer/ColorRect/VBoxContainer" node_paths=PackedStringArray("parent")]
 layout_mode = 2
 size_flags_vertical = 3
-text = "5 steel"
 script = ExtResource("3_p1mel")
-steel = 5
-product = "Level 3 gun"
 parent = NodePath("../../../../../..")
-weapon = true
 
 [node name="ColorRect2" type="ColorRect" parent="Crafting Menu/ColorRect9/HBoxContainer"]
 layout_mode = 2
@@ -275,19 +256,15 @@ color = Color(0.391185, 0.391185, 0.391185, 1)
 layout_mode = 0
 offset_right = 319.0
 offset_bottom = 71.0
-text = "Level 1 Armor"
+text = "Stuff"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Button" type="Button" parent="Crafting Menu/ColorRect9/HBoxContainer/ColorRect2/VBoxContainer2" node_paths=PackedStringArray("parent")]
 layout_mode = 2
 size_flags_vertical = 3
-text = "5 wood"
 script = ExtResource("3_p1mel")
-wood = 5
-product = "Level 1 armor"
 parent = NodePath("../../../../../..")
-armor = true
 
 [node name="ColorRect2" type="ColorRect" parent="Crafting Menu/ColorRect9/HBoxContainer/ColorRect2/VBoxContainer2"]
 layout_mode = 2
@@ -298,20 +275,15 @@ color = Color(0.391185, 0.391185, 0.391185, 1)
 layout_mode = 0
 offset_right = 319.0
 offset_bottom = 71.0
-text = "Level 2 Armor"
+text = "Stuff"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Button2" type="Button" parent="Crafting Menu/ColorRect9/HBoxContainer/ColorRect2/VBoxContainer2" node_paths=PackedStringArray("parent")]
 layout_mode = 2
 size_flags_vertical = 3
-text = "3 steel 3 wood"
 script = ExtResource("3_p1mel")
-wood = 3
-steel = 3
-product = "Level 2 armor"
 parent = NodePath("../../../../../..")
-armor = true
 
 [node name="ColorRect3" type="ColorRect" parent="Crafting Menu/ColorRect9/HBoxContainer/ColorRect2/VBoxContainer2"]
 layout_mode = 2
@@ -322,19 +294,15 @@ color = Color(0.391185, 0.391185, 0.391185, 1)
 layout_mode = 0
 offset_right = 319.0
 offset_bottom = 71.0
-text = "Level 3 Armor"
+text = "Stuff"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Button3" type="Button" parent="Crafting Menu/ColorRect9/HBoxContainer/ColorRect2/VBoxContainer2" node_paths=PackedStringArray("parent")]
 layout_mode = 2
 size_flags_vertical = 3
-text = "10 steel"
 script = ExtResource("3_p1mel")
-steel = 10
-product = "Level 3 armor"
 parent = NodePath("../../../../../..")
-armor = true
 
 [node name="ColorRect3" type="ColorRect" parent="Crafting Menu/ColorRect9/HBoxContainer"]
 layout_mode = 2
@@ -357,18 +325,14 @@ color = Color(0.391185, 0.391185, 0.391185, 1)
 layout_mode = 0
 offset_right = 320.0
 offset_bottom = 71.0
-text = "Supply"
+text = "Stuff"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Button" type="Button" parent="Crafting Menu/ColorRect9/HBoxContainer/ColorRect3/VBoxContainer3" node_paths=PackedStringArray("parent")]
+[node name="Button" type="Button" parent="Crafting Menu/ColorRect9/HBoxContainer/ColorRect3/VBoxContainer3"]
 layout_mode = 2
 size_flags_vertical = 3
-text = "1 money"
 script = ExtResource("3_p1mel")
-supply = -1
-money = 1
-parent = NodePath("../../../../../..")
 
 [node name="ColorRect2" type="ColorRect" parent="Crafting Menu/ColorRect9/HBoxContainer/ColorRect3/VBoxContainer3"]
 layout_mode = 2
@@ -379,18 +343,14 @@ color = Color(0.391185, 0.391185, 0.391185, 1)
 layout_mode = 0
 offset_right = 320.0
 offset_bottom = 71.0
-text = "Steel"
+text = "Stuff"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Button2" type="Button" parent="Crafting Menu/ColorRect9/HBoxContainer/ColorRect3/VBoxContainer3" node_paths=PackedStringArray("parent")]
+[node name="Button2" type="Button" parent="Crafting Menu/ColorRect9/HBoxContainer/ColorRect3/VBoxContainer3"]
 layout_mode = 2
 size_flags_vertical = 3
-text = "5 money"
 script = ExtResource("3_p1mel")
-steel = -1
-money = 5
-parent = NodePath("../../../../../..")
 
 [node name="ColorRect3" type="ColorRect" parent="Crafting Menu/ColorRect9/HBoxContainer/ColorRect3/VBoxContainer3"]
 layout_mode = 2
@@ -401,18 +361,14 @@ color = Color(0.391185, 0.391185, 0.391185, 1)
 layout_mode = 0
 offset_right = 320.0
 offset_bottom = 71.0
-text = "Wood"
+text = "Stuff"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Button3" type="Button" parent="Crafting Menu/ColorRect9/HBoxContainer/ColorRect3/VBoxContainer3" node_paths=PackedStringArray("parent")]
+[node name="Button3" type="Button" parent="Crafting Menu/ColorRect9/HBoxContainer/ColorRect3/VBoxContainer3"]
 layout_mode = 2
 size_flags_vertical = 3
-text = "2 money"
 script = ExtResource("3_p1mel")
-wood = -1
-money = 2
-parent = NodePath("../../../../../..")
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="Crafting Menu/ColorRect9"]
 layout_mode = 0
@@ -461,211 +417,14 @@ text = "Thing Three"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Drafting Menu" type="Control" parent="."]
-layout_mode = 3
-anchors_preset = 0
-
-[node name="ColorRect9" type="ColorRect" parent="Drafting Menu"]
-layout_mode = 0
-offset_left = 9.0
-offset_top = 63.0
-offset_right = 1062.0
-offset_bottom = 623.0
-color = Color(0, 0, 1, 1)
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Drafting Menu/ColorRect9"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.269097
-anchor_top = 0.214506
-anchor_right = 0.964254
-anchor_bottom = 1.04486
-offset_left = 18.6406
-offset_top = -39.1235
-offset_right = 18.6406
-offset_bottom = -39.1235
-metadata/_edit_use_anchors_ = true
-
-[node name="ColorRect" type="ColorRect" parent="Drafting Menu/ColorRect9"]
-layout_mode = 0
-offset_left = 14.0
-offset_top = 8.0
-offset_right = 289.0
-offset_bottom = 551.0
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Drafting Menu/ColorRect9/ColorRect"]
-layout_mode = 0
-offset_right = 275.0
-offset_bottom = 543.0
-
-[node name="ColorRect4" type="ColorRect" parent="Drafting Menu/ColorRect9/ColorRect/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-color = Color(1, 0.498039, 0, 1)
-
-[node name="Label" type="Label" parent="Drafting Menu/ColorRect9/ColorRect/VBoxContainer/ColorRect4"]
-layout_mode = 0
-offset_right = 276.0
-offset_bottom = 73.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-text = "RECRUIT"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="ColorRect" type="ColorRect" parent="Drafting Menu/ColorRect9/ColorRect/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-color = Color(0, 1, 1, 1)
-
-[node name="Label4" type="Label" parent="Drafting Menu/ColorRect9/ColorRect/VBoxContainer/ColorRect"]
-layout_mode = 0
-offset_right = 275.0
-offset_bottom = 75.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-text = "cost: 3
-feed: 1"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Button" type="Button" parent="Drafting Menu/ColorRect9/ColorRect/VBoxContainer" node_paths=PackedStringArray("parent")]
-layout_mode = 2
-size_flags_vertical = 3
-text = "recruit minion 1"
-script = ExtResource("4_u5uhc")
-army_scene = ExtResource("4_o6y36")
-soldier_panel = ExtResource("2_q85f0")
-parent = NodePath("../../../../..")
-type = 1
-
-[node name="ColorRect2" type="ColorRect" parent="Drafting Menu/ColorRect9/ColorRect/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-color = Color(0, 1, 1, 1)
-
-[node name="Label3" type="Label" parent="Drafting Menu/ColorRect9/ColorRect/VBoxContainer/ColorRect2"]
-layout_mode = 0
-offset_right = 276.0
-offset_bottom = 75.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-text = "cost: 0
-feed: 3"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Button2" type="Button" parent="Drafting Menu/ColorRect9/ColorRect/VBoxContainer" node_paths=PackedStringArray("parent")]
-layout_mode = 2
-size_flags_vertical = 3
-text = "recruit minion 2"
-script = ExtResource("4_u5uhc")
-army_scene = ExtResource("4_o6y36")
-soldier_panel = ExtResource("2_q85f0")
-parent = NodePath("../../../../..")
-type = 2
-
-[node name="ColorRect3" type="ColorRect" parent="Drafting Menu/ColorRect9/ColorRect/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-color = Color(0, 1, 1, 1)
-
-[node name="Label5" type="Label" parent="Drafting Menu/ColorRect9/ColorRect/VBoxContainer/ColorRect3"]
-layout_mode = 0
-offset_right = 275.0
-offset_bottom = 75.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-text = "cost: 1
-feed: 1"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Button3" type="Button" parent="Drafting Menu/ColorRect9/ColorRect/VBoxContainer" node_paths=PackedStringArray("parent")]
-layout_mode = 2
-size_flags_vertical = 3
-text = "recruit minion 3"
-script = ExtResource("4_u5uhc")
-army_scene = ExtResource("4_o6y36")
-soldier_panel = ExtResource("2_q85f0")
-parent = NodePath("../../../../..")
-type = 3
-
-[node name="ColorRect2" type="ColorRect" parent="Drafting Menu/ColorRect9"]
-layout_mode = 0
-offset_left = 298.0
-offset_top = 10.0
-offset_right = 1030.0
-offset_bottom = 66.0
-
-[node name="HBoxContainer" type="HBoxContainer" parent="Drafting Menu/ColorRect9/ColorRect2"]
-layout_mode = 0
-offset_right = 732.0
-offset_bottom = 56.0
-
-[node name="Name" type="Label" parent="Drafting Menu/ColorRect9/ColorRect2/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-text = "Name"
-
-[node name="Type" type="Label" parent="Drafting Menu/ColorRect9/ColorRect2/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-text = "Type"
-
-[node name="Attack" type="Label" parent="Drafting Menu/ColorRect9/ColorRect2/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-text = "Attack"
-
-[node name="HP" type="Label" parent="Drafting Menu/ColorRect9/ColorRect2/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-text = "Current HP"
-
-[node name="HP2" type="Label" parent="Drafting Menu/ColorRect9/ColorRect2/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-text = "Max HP"
-
-[node name="OptionButton" type="Label" parent="Drafting Menu/ColorRect9/ColorRect2/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-text = "Weapon"
-
-[node name="OptionButton2" type="Label" parent="Drafting Menu/ColorRect9/ColorRect2/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-text = "Armor"
-
-[node name="Trading" type="Control" parent="."]
-visible = false
-layout_mode = 3
-anchors_preset = 0
-
-[node name="ColorRect2" type="ColorRect" parent="Trading"]
-layout_mode = 0
-offset_left = 9.0
-offset_top = 63.0
-offset_right = 1062.0
-offset_bottom = 623.0
-color = Color(0, 0, 1, 1)
-
 [connection signal="pressed" from="Right Bar/Background/VBoxContainer/Crafting Button" to="." method="_on_craft_button_pressed"]
 [connection signal="pressed" from="Right Bar/Background/VBoxContainer/Drafting Button" to="." method="_on_draft_button_pressed"]
 [connection signal="pressed" from="Right Bar/Background/VBoxContainer/Trading Button" to="." method="_on_trade_button_pressed"]
 [connection signal="pressed" from="Crafting Menu/ColorRect9/HBoxContainer/ColorRect/VBoxContainer/Button" to="Crafting Menu/ColorRect9/HBoxContainer/ColorRect/VBoxContainer/Button" method="_on_pressed"]
 [connection signal="pressed" from="Crafting Menu/ColorRect9/HBoxContainer/ColorRect/VBoxContainer/Button2" to="Crafting Menu/ColorRect9/HBoxContainer/ColorRect/VBoxContainer/Button2" method="_on_pressed"]
-[connection signal="pressed" from="Crafting Menu/ColorRect9/HBoxContainer/ColorRect/VBoxContainer/Button3" to="Crafting Menu/ColorRect9/HBoxContainer/ColorRect/VBoxContainer/Button3" method="_on_pressed"]
 [connection signal="pressed" from="Crafting Menu/ColorRect9/HBoxContainer/ColorRect2/VBoxContainer2/Button" to="Crafting Menu/ColorRect9/HBoxContainer/ColorRect2/VBoxContainer2/Button" method="_on_pressed"]
 [connection signal="pressed" from="Crafting Menu/ColorRect9/HBoxContainer/ColorRect2/VBoxContainer2/Button2" to="Crafting Menu/ColorRect9/HBoxContainer/ColorRect2/VBoxContainer2/Button2" method="_on_pressed"]
 [connection signal="pressed" from="Crafting Menu/ColorRect9/HBoxContainer/ColorRect2/VBoxContainer2/Button3" to="Crafting Menu/ColorRect9/HBoxContainer/ColorRect2/VBoxContainer2/Button3" method="_on_pressed"]
 [connection signal="pressed" from="Crafting Menu/ColorRect9/HBoxContainer/ColorRect3/VBoxContainer3/Button" to="Crafting Menu/ColorRect9/HBoxContainer/ColorRect3/VBoxContainer3/Button" method="_on_pressed"]
 [connection signal="pressed" from="Crafting Menu/ColorRect9/HBoxContainer/ColorRect3/VBoxContainer3/Button2" to="Crafting Menu/ColorRect9/HBoxContainer/ColorRect3/VBoxContainer3/Button2" method="_on_pressed"]
 [connection signal="pressed" from="Crafting Menu/ColorRect9/HBoxContainer/ColorRect3/VBoxContainer3/Button3" to="Crafting Menu/ColorRect9/HBoxContainer/ColorRect3/VBoxContainer3/Button3" method="_on_pressed"]
-[connection signal="pressed" from="Drafting Menu/ColorRect9/ColorRect/VBoxContainer/Button" to="Drafting Menu/ColorRect9/ColorRect/VBoxContainer/Button" method="_on_button_pressed"]
-[connection signal="pressed" from="Drafting Menu/ColorRect9/ColorRect/VBoxContainer/Button2" to="Drafting Menu/ColorRect9/ColorRect/VBoxContainer/Button2" method="_on_button_pressed"]
-[connection signal="pressed" from="Drafting Menu/ColorRect9/ColorRect/VBoxContainer/Button3" to="Drafting Menu/ColorRect9/ColorRect/VBoxContainer/Button3" method="_on_button_pressed"]

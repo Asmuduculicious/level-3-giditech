@@ -1,26 +1,33 @@
-[gd_scene load_steps=3 format=3 uid="uid://bug0dy53yxj8x"]
+[gd_scene load_steps=3 format=3 uid="uid://o8pves6e8wfu"]
 
 [ext_resource type="Script" uid="uid://jetd28rs83nu" path="res://Scripts/soldier_board.gd" id="1_rtsqm"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rtsqm"]
 bg_color = Color(1, 1, 1, 1)
 
-[node name="ColorRect" type="PanelContainer" node_paths=PackedStringArray("unit_name", "type_label", "attack_label", "hp_label", "current_hp_label", "weapon", "armor")]
+[node name="ColorRect" type="PanelContainer" node_paths=PackedStringArray("unit_name", "type", "attack", "hp", "current_hp")]
 anchors_preset = -1
 anchor_right = 0.644965
 anchor_bottom = 0.0617284
 theme_override_styles/panel = SubResource("StyleBoxFlat_rtsqm")
 script = ExtResource("1_rtsqm")
 unit_name = NodePath("HBoxContainer/Name")
-type_label = NodePath("HBoxContainer/Type")
-attack_label = NodePath("HBoxContainer/Attack")
-hp_label = NodePath("HBoxContainer/HP")
-current_hp_label = NodePath("HBoxContainer/HP2")
-weapon = NodePath("HBoxContainer/Weapon")
-armor = NodePath("HBoxContainer/Armor")
+type = NodePath("HBoxContainer/Type")
+attack = NodePath("HBoxContainer/Attack")
+hp = NodePath("HBoxContainer/HP")
+current_hp = NodePath("HBoxContainer/HP2")
 metadata/_edit_use_anchors_ = true
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+
+[node name="Label3" type="Label" parent="HBoxContainer"]
 layout_mode = 2
 
 [node name="Name" type="Label" parent="HBoxContainer"]
@@ -40,31 +47,13 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 
 [node name="HP" type="Label" parent="HBoxContainer"]
 layout_mode = 2
-size_flags_horizontal = 3
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-horizontal_alignment = 1
 
 [node name="HP2" type="Label" parent="HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-horizontal_alignment = 1
 
-[node name="Weapon" type="OptionButton" parent="HBoxContainer"]
+[node name="OptionButton" type="OptionButton" parent="HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-selected = 0
-item_count = 1
-popup/item_0/text = "Level 0 gun"
-popup/item_0/id = 0
-
-[node name="Armor" type="OptionButton" parent="HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-selected = 0
-item_count = 1
-popup/item_0/text = "Level 0 armor"
-popup/item_0/id = 0
-
-[connection signal="item_selected" from="HBoxContainer/Weapon" to="." method="_on_weapon_item_selected"]
-[connection signal="item_selected" from="HBoxContainer/Armor" to="." method="_on_armor_item_selected"]
