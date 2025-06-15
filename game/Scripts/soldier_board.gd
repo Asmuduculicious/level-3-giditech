@@ -23,13 +23,11 @@ func _ready() -> void:
 	attack_label.text = (str(attack))
 	hp_label.text = (str(hp))
 	current_hp_label.text = (str(current_hp))
-	
+
 	for i in range(global.armor.size()):
 		armor.add_item(str(global.armor[i]))
 	for i in range(global.weapon.size()):
 		weapon.add_item(str(global.weapon[i]))
-	current_weapon = weapon.get_item_text(weapon.selected)
-	current_armor = armor.get_item_text(armor.selected)
 
 func _update_status() -> void:
 	current_weapon = weapon.get_item_text(weapon.selected)

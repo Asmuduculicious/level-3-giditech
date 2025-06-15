@@ -150,7 +150,6 @@ size_flags_vertical = 3
 text = "building"
 
 [node name="Crafting Menu" type="Control" parent="."]
-visible = false
 layout_mode = 3
 anchors_preset = 0
 

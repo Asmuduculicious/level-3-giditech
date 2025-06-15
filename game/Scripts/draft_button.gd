@@ -29,7 +29,6 @@ func _on_button_pressed() -> void:
 		soldier.current_hp = hp
 		parent.soldier_list.add_child(soldier)
 		
-		
 		var army = army_scene.instantiate()
 		army.army_name.text = str(soldier_number)
 		army.position = parent.get_parent().tilemap.map_to_local(parent.get_parent().home_tile)

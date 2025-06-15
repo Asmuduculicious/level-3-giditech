@@ -7,7 +7,6 @@ extends Node2D
 @export var current_hp = 0
 @export var selected = false
 
-
 # In game information stored
 
 @export var current_tile = Vector2i(0,0)
@@ -97,7 +96,6 @@ func _search() -> void:
 				searched.clear()
 				tile_distance.clear()
 				# Clears everything
-				
 				
 			else:
 				# When it has found a tile that isn't the target

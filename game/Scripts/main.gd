@@ -29,6 +29,7 @@ var tile_position_before = Vector2i(0,0)
 var tile_position_after = Vector2i(0,0)
 
 func _ready() -> void:
+	
 	for y in range(map_size*2 - 1):
 		if y < map_size:
 			left_span = (y+1)/2
@@ -164,6 +165,7 @@ func _next_day() -> void:
 
 func _on_area_2d_body_shape_entered(body_rid: RID, body: Node2D, body_shape_index: int, local_shape_index: int) -> void:
 	mouse_on_tile = body.local_to_map(get_local_mouse_position())
+	print("Works")
 	
 func _enemy_action() -> void:
 	pass
