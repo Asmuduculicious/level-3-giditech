@@ -24,6 +24,7 @@ layout_mode = 3
 anchors_preset = 0
 
 [node name="ColorRect" type="ColorRect" parent="Top Bar"]
+layout_mode = 0
 offset_right = 1146.0
 offset_bottom = 58.0
 
@@ -96,6 +97,7 @@ offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="Background" type="ColorRect" parent="Right Bar"]
+layout_mode = 0
 offset_left = 1063.0
 offset_top = 70.0
 offset_right = 1144.0
@@ -152,6 +154,7 @@ layout_mode = 3
 anchors_preset = 0
 
 [node name="ColorRect9" type="ColorRect" parent="Crafting Menu"]
+layout_mode = 0
 offset_left = 9.0
 offset_top = 63.0
 offset_right = 1062.0
@@ -206,6 +209,7 @@ size_flags_vertical = 3
 color = Color(0.391185, 0.391185, 0.391185, 1)
 
 [node name="Label" type="Label" parent="Crafting Menu/ColorRect9/HBoxContainer/ColorRect/VBoxContainer/ColorRect2"]
+layout_mode = 0
 offset_right = 320.0
 offset_bottom = 71.0
 text = "Stuff"
@@ -224,6 +228,7 @@ size_flags_vertical = 3
 color = Color(0.391185, 0.391185, 0.391185, 1)
 
 [node name="Label" type="Label" parent="Crafting Menu/ColorRect9/HBoxContainer/ColorRect/VBoxContainer/ColorRect3"]
+layout_mode = 0
 offset_right = 320.0
 offset_bottom = 71.0
 text = "Stuff"
@@ -254,6 +259,7 @@ size_flags_vertical = 3
 color = Color(0.391185, 0.391185, 0.391185, 1)
 
 [node name="Label" type="Label" parent="Crafting Menu/ColorRect9/HBoxContainer/ColorRect2/VBoxContainer2/ColorRect"]
+layout_mode = 0
 offset_right = 319.0
 offset_bottom = 71.0
 text = "Stuff"
@@ -272,6 +278,7 @@ size_flags_vertical = 3
 color = Color(0.391185, 0.391185, 0.391185, 1)
 
 [node name="Label" type="Label" parent="Crafting Menu/ColorRect9/HBoxContainer/ColorRect2/VBoxContainer2/ColorRect2"]
+layout_mode = 0
 offset_right = 319.0
 offset_bottom = 71.0
 text = "Stuff"
@@ -290,6 +297,7 @@ size_flags_vertical = 3
 color = Color(0.391185, 0.391185, 0.391185, 1)
 
 [node name="Label" type="Label" parent="Crafting Menu/ColorRect9/HBoxContainer/ColorRect2/VBoxContainer2/ColorRect3"]
+layout_mode = 0
 offset_right = 319.0
 offset_bottom = 71.0
 text = "Stuff"
@@ -320,6 +328,7 @@ size_flags_vertical = 3
 color = Color(0.391185, 0.391185, 0.391185, 1)
 
 [node name="Label" type="Label" parent="Crafting Menu/ColorRect9/HBoxContainer/ColorRect3/VBoxContainer3/ColorRect"]
+layout_mode = 0
 offset_right = 320.0
 offset_bottom = 71.0
 text = "Stuff"
@@ -337,6 +346,7 @@ size_flags_vertical = 3
 color = Color(0.391185, 0.391185, 0.391185, 1)
 
 [node name="Label" type="Label" parent="Crafting Menu/ColorRect9/HBoxContainer/ColorRect3/VBoxContainer3/ColorRect2"]
+layout_mode = 0
 offset_right = 320.0
 offset_bottom = 71.0
 text = "Stuff"
@@ -354,6 +364,7 @@ size_flags_vertical = 3
 color = Color(0.391185, 0.391185, 0.391185, 1)
 
 [node name="Label" type="Label" parent="Crafting Menu/ColorRect9/HBoxContainer/ColorRect3/VBoxContainer3/ColorRect3"]
+layout_mode = 0
 offset_right = 320.0
 offset_bottom = 71.0
 text = "Stuff"
@@ -379,6 +390,7 @@ size_flags_horizontal = 3
 color = Color(0.757132, 0.349594, 3.85046e-07, 1)
 
 [node name="Label" type="Label" parent="Crafting Menu/ColorRect9/HBoxContainer2/ColorRect"]
+layout_mode = 0
 offset_right = 324.0
 offset_bottom = 71.0
 text = "Thing One"
@@ -391,6 +403,7 @@ size_flags_horizontal = 3
 color = Color(0.757132, 0.349594, 3.85046e-07, 1)
 
 [node name="Label2" type="Label" parent="Crafting Menu/ColorRect9/HBoxContainer2/ColorRect2"]
+layout_mode = 0
 offset_right = 324.0
 offset_bottom = 71.0
 text = "Thing Two"
@@ -403,6 +416,7 @@ size_flags_horizontal = 3
 color = Color(0.757132, 0.349594, 3.85046e-07, 1)
 
 [node name="Label3" type="Label" parent="Crafting Menu/ColorRect9/HBoxContainer2/ColorRect3"]
+layout_mode = 0
 offset_right = 325.0
 offset_bottom = 71.0
 text = "Thing Three"
@@ -410,10 +424,12 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Drafting Menu" type="Control" parent="."]
+visible = false
 layout_mode = 3
 anchors_preset = 0
 
 [node name="ColorRect9" type="ColorRect" parent="Drafting Menu"]
+layout_mode = 0
 offset_left = 9.0
 offset_top = 63.0
 offset_right = 1062.0
@@ -434,6 +450,7 @@ offset_bottom = -39.1235
 metadata/_edit_use_anchors_ = true
 
 [node name="ColorRect" type="ColorRect" parent="Drafting Menu/ColorRect9"]
+layout_mode = 0
 offset_left = 14.0
 offset_top = 8.0
 offset_right = 289.0
@@ -464,6 +481,7 @@ size_flags_vertical = 3
 color = Color(0, 1, 1, 1)
 
 [node name="Label4" type="Label" parent="Drafting Menu/ColorRect9/ColorRect/VBoxContainer/ColorRect"]
+layout_mode = 0
 offset_right = 275.0
 offset_bottom = 75.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
@@ -486,6 +504,7 @@ size_flags_vertical = 3
 color = Color(0, 1, 1, 1)
 
 [node name="Label3" type="Label" parent="Drafting Menu/ColorRect9/ColorRect/VBoxContainer/ColorRect2"]
+layout_mode = 0
 offset_right = 276.0
 offset_bottom = 75.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
@@ -508,6 +527,7 @@ size_flags_vertical = 3
 color = Color(0, 1, 1, 1)
 
 [node name="Label5" type="Label" parent="Drafting Menu/ColorRect9/ColorRect/VBoxContainer/ColorRect3"]
+layout_mode = 0
 offset_right = 275.0
 offset_bottom = 75.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
@@ -525,12 +545,14 @@ soldier_panel = ExtResource("2_q85f0")
 parent = NodePath("../../../../..")
 
 [node name="ColorRect2" type="ColorRect" parent="Drafting Menu/ColorRect9"]
+layout_mode = 0
 offset_left = 298.0
 offset_top = 10.0
 offset_right = 1030.0
 offset_bottom = 66.0
 
 [node name="Label" type="Label" parent="Drafting Menu/ColorRect9/ColorRect2"]
+layout_mode = 0
 offset_left = 4.0
 offset_right = 736.0
 offset_bottom = 56.0
