@@ -39,6 +39,8 @@ func _on_craft_button_pressed() -> void:
 		trade_menu.visible = false
 
 func _on_draft_button_pressed() -> void:
+	for i in soldier_list.get_children():
+		i._update_status()
 	if draft_menu.visible == true:
 		draft_menu.visible = false
 	else:
