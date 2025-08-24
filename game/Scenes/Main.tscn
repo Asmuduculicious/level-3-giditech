@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://d132qpu20jjmv"]
+[gd_scene load_steps=7 format=3 uid="uid://d132qpu20jjmv"]
 
 [ext_resource type="Script" uid="uid://la62ttqljcw1" path="res://Scripts/main.gd" id="1_kln2b"]
 [ext_resource type="PackedScene" uid="uid://ddkgpqhjvcfsq" path="res://Scenes/canvas_layer.tscn" id="1_r150o"]
@@ -9,29 +9,38 @@ texture = ExtResource("3_kln2b")
 margins = Vector2i(5, 9)
 separation = Vector2i(26, 16)
 texture_region_size = Vector2i(102, 112)
-0:1/0 = 0
-0:1/0/custom_data_0 = 5
 1:1/0 = 0
 0:2/0 = 0
+0:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(0, -55.5, -48, -27.75, -48, 27.75, 0, 55.5, 48, 27.75, 48, -27.75)
 1:2/0 = 0
+1:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(0, -55.5, 48, -27.75, 48, 27.75, 0, 55.5, -48, 27.75, -48, -27.75)
 0:3/0 = 0
+0:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(0, -55.5, -48, -27.75, -48, 27.75, 0, 55.5, 48, 27.75, 48, -27.75)
 1:3/0 = 0
+1:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(0, -55.5, 48, -27.75, 48, 27.75, 0, 55.5, -48, 27.75, -48, -27.75)
+1:3/0/custom_data_0 = true
+0:1/0 = 0
+0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(0, -55.5, -48, -27.75, -48, 27.75, 0, 55.5, 48, 27.75, 48, -27.75)
 
 [sub_resource type="TileSet" id="TileSet_pbw6q"]
 tile_shape = 3
 tile_size = Vector2i(96, 111)
-custom_data_layer_0/name = "test"
-custom_data_layer_0/type = 2
+physics_layer_0/collision_layer = 1
+custom_data_layer_0/name = "base"
+custom_data_layer_0/type = 1
 sources/0 = SubResource("TileSetAtlasSource_rgh2o")
 
-[node name="Game" type="Node2D" node_paths=PackedStringArray("day_label", "tilemap", "camera", "ui_node", "army_list")]
+[sub_resource type="CircleShape2D" id="CircleShape2D_kln2b"]
+
+[node name="Game" type="Node2D" node_paths=PackedStringArray("day_label", "tilemap", "camera", "ui_node", "army_list", "mouse_follow")]
 script = ExtResource("1_kln2b")
 day_label = NodePath("UI2/Label")
 tilemap = NodePath("TileMapLayer")
-map_size = 8
+map_size = 5
 camera = NodePath("Player Viewport")
 ui_node = NodePath("UI")
 army_list = NodePath("Army List")
+mouse_follow = NodePath("Area2D")
 
 [node name="UI" parent="." instance=ExtResource("1_r150o")]
 
@@ -78,6 +87,12 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_kln2b")
+
 [connection signal="pressed" from="UI2/Zoom Out" to="." method="_on_zoom_out_pressed"]
 [connection signal="pressed" from="UI2/Zoom In" to="." method="_on_zoom_in_pressed"]
 [connection signal="pressed" from="UI2/Next Day" to="." method="_next_day"]
+[connection signal="body_shape_entered" from="Area2D" to="." method="_on_area_2d_body_shape_entered"]

@@ -11,7 +11,10 @@ var day = 1
 
 var soldier_list = []
 
+var tile_to_army = {}
+
+var selected = []
+
 func _ready():
 	for i in range(100):
-		soldier_list.append(i)
-	print(soldier_list)
+		soldier_list.append(100-i)

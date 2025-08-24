@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://ddkgpqhjvcfsq"]
+[gd_scene load_steps=6 format=3 uid="uid://ddkgpqhjvcfsq"]
 
 [ext_resource type="Script" uid="uid://b3ji0box41n8d" path="res://Scripts/Interface.gd" id="1_5oaki"]
 [ext_resource type="PackedScene" uid="uid://bug0dy53yxj8x" path="res://Scenes/soldier_board.tscn" id="2_q85f0"]
 [ext_resource type="Script" uid="uid://dbstd1e4gb0hx" path="res://Scripts/craft_button.gd" id="3_p1mel"]
+[ext_resource type="PackedScene" uid="uid://cijj0ile3jv6k" path="res://Scenes/army.tscn" id="4_o6y36"]
 [ext_resource type="Script" uid="uid://p00b17oa1j00" path="res://Scripts/draft_button.gd" id="4_u5uhc"]
 
 [node name="UI" type="CanvasLayer" node_paths=PackedStringArray("supply", "steel", "wood", "money", "craft_button", "draft_button", "trade_button", "craft_menu", "draft_menu", "trade_menu", "soldier_list")]
@@ -532,8 +533,10 @@ layout_mode = 2
 size_flags_vertical = 3
 text = "recruit minion 1"
 script = ExtResource("4_u5uhc")
+army_scene = ExtResource("4_o6y36")
 soldier_panel = ExtResource("2_q85f0")
 parent = NodePath("../../../../..")
+type = 1
 
 [node name="ColorRect2" type="ColorRect" parent="Drafting Menu/ColorRect9/ColorRect/VBoxContainer"]
 layout_mode = 2
@@ -555,8 +558,10 @@ layout_mode = 2
 size_flags_vertical = 3
 text = "recruit minion 2"
 script = ExtResource("4_u5uhc")
+army_scene = ExtResource("4_o6y36")
 soldier_panel = ExtResource("2_q85f0")
 parent = NodePath("../../../../..")
+type = 2
 
 [node name="ColorRect3" type="ColorRect" parent="Drafting Menu/ColorRect9/ColorRect/VBoxContainer"]
 layout_mode = 2
@@ -578,8 +583,10 @@ layout_mode = 2
 size_flags_vertical = 3
 text = "recruit minion 3"
 script = ExtResource("4_u5uhc")
+army_scene = ExtResource("4_o6y36")
 soldier_panel = ExtResource("2_q85f0")
 parent = NodePath("../../../../..")
+type = 3
 
 [node name="ColorRect2" type="ColorRect" parent="Drafting Menu/ColorRect9"]
 layout_mode = 0
@@ -662,3 +669,4 @@ color = Color(0, 0, 1, 1)
 [connection signal="pressed" from="Crafting Menu/ColorRect9/HBoxContainer/ColorRect3/VBoxContainer3/Button3" to="Crafting Menu/ColorRect9/HBoxContainer/ColorRect3/VBoxContainer3/Button3" method="_on_pressed"]
 [connection signal="pressed" from="Drafting Menu/ColorRect9/ColorRect/VBoxContainer/Button" to="Drafting Menu/ColorRect9/ColorRect/VBoxContainer/Button" method="_on_button_pressed"]
 [connection signal="pressed" from="Drafting Menu/ColorRect9/ColorRect/VBoxContainer/Button2" to="Drafting Menu/ColorRect9/ColorRect/VBoxContainer/Button2" method="_on_button_pressed"]
+[connection signal="pressed" from="Drafting Menu/ColorRect9/ColorRect/VBoxContainer/Button3" to="Drafting Menu/ColorRect9/ColorRect/VBoxContainer/Button3" method="_on_button_pressed"]

@@ -5,17 +5,17 @@
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rtsqm"]
 bg_color = Color(1, 1, 1, 1)
 
-[node name="ColorRect" type="PanelContainer" node_paths=PackedStringArray("unit_name", "type", "attack", "hp", "current_hp", "weapon", "armor")]
+[node name="ColorRect" type="PanelContainer" node_paths=PackedStringArray("unit_name", "type_label", "attack_label", "hp_label", "current_hp_label", "weapon", "armor")]
 anchors_preset = -1
 anchor_right = 0.644965
 anchor_bottom = 0.0617284
 theme_override_styles/panel = SubResource("StyleBoxFlat_rtsqm")
 script = ExtResource("1_rtsqm")
 unit_name = NodePath("HBoxContainer/Name")
-type = NodePath("HBoxContainer/Type")
-attack = NodePath("HBoxContainer/Attack")
-hp = NodePath("HBoxContainer/HP")
-current_hp = NodePath("HBoxContainer/HP2")
+type_label = NodePath("HBoxContainer/Type")
+attack_label = NodePath("HBoxContainer/Attack")
+hp_label = NodePath("HBoxContainer/HP")
+current_hp_label = NodePath("HBoxContainer/HP2")
 weapon = NodePath("HBoxContainer/Weapon")
 armor = NodePath("HBoxContainer/Armor")
 metadata/_edit_use_anchors_ = true

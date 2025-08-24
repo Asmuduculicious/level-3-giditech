@@ -2,21 +2,28 @@ extends PanelContainer
 var soldier_number = 0
 
 @export var unit_name: Node
-@export var type: Node
-@export var attack: Node
-@export var hp: Node
-@export var current_hp: Node
+@export var type_label: Node
+@export var attack_label: Node
+@export var hp_label: Node
+@export var current_hp_label: Node
 @export var weapon: Node
 @export var armor: Node
+
+var type = 0
+var attack = 0
+var hp = 0
+var current_hp = 0
+
 var current_weapon = ""
 var current_armor = ""
 
 func _ready() -> void:
-	unit_name.text = (str(global.soldier[soldier_number][0] + 1))
-	type.text = (str(global.soldier[soldier_number][1]))
-	attack.text = (str(global.soldier[soldier_number][2]))
-	hp.text = (str(global.soldier[soldier_number][3]))
-	current_hp.text = (str(global.soldier[soldier_number][4]))
+	unit_name.text = (str(soldier_number))
+	type_label.text = (str(type))
+	attack_label.text = (str(attack))
+	hp_label.text = (str(hp))
+	current_hp_label.text = (str(current_hp))
+	
 	for i in range(global.armor.size()):
 		armor.add_item(str(global.armor[i]))
 	for i in range(global.weapon.size()):
@@ -32,22 +39,22 @@ func _update_status() -> void:
 	weapon.add_item(current_weapon)
 	armor.add_item(current_armor)
 	if current_weapon == "Level 0 gun":
-		attack.text = "1"
+		attack_label.text = "1"
 	elif current_weapon == "Level 1 gun":
-		attack.text = "3"
+		attack_label.text = "3"
 	elif current_weapon == "Level 2 gun":
-		attack.text = "6"
+		attack_label.text = "6"
 	elif current_weapon == "Level 3 gun":
-		attack.text = "10"
+		attack_label.text = "10"
 		
 	if current_weapon == "Level 0 armor":
-		hp.text = "5"
+		hp_label.text = "5"
 	elif current_weapon == "Level 1 armor":
-		hp.text = "7"
+		hp_label.text = "7"
 	elif current_weapon == "Level 2 armor":
-		hp.text = "13"
+		hp_label.text = "13"
 	elif current_weapon == "Level 3 armor":
-		hp.text = "21"
+		hp_label.text = "21"
 		
 	for i in range(global.armor.size()):
 		armor.add_item(str(global.armor[i]))
