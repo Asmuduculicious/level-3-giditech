@@ -91,7 +91,6 @@ func _input(event):
 				if global.selected.size() == 0:
 					# If they haven't selected anything
 					army_on_tile = global.tile_to_army[str(selected_tile_position)]
-					print(army_on_tile)
 					# Get an array of what is on the tile from the global variable that is an dictionary with the key being the tile
 					for i in range(army_on_tile.size()):
 					# Repeat for each thing in the array
@@ -106,18 +105,21 @@ func _input(event):
 						# Prints everything selected
 					army_generated.clear()
 					# Clears the array of all children after using it
+					global.tile_to_army[str(selected_tile_position)].clear()
+					# Removes the army on the selected tile
 				else:
 					# if you have something selected
-					print(global.selected.size())
 					for i in range(army_list.get_children().size()):
 						army_generated.append(army_list.get_children()[i])
 							# Add all children name to an array
 					for i in range(global.selected.size()):
 						# Repeats for everything selected
+						global.tile_to_army[str(selected_tile_position)].append(army_list.get_children()[army_generated.find(global.selected[i])].army_name.text)
+						# Add the selected army's name back to the dictionary containing positions
 						army_list.get_children()[army_generated.find(global.selected[i])].position = tilemap.map_to_local(selected_tile_position)
 						# Finds all children that is selected in the instantiated scene and set their position to the new tile
-	
 					global.selected.clear()
+					army_generated.clear()
 
 
 func _on_zoom_out_pressed() -> void:
