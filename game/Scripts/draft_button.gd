@@ -33,7 +33,7 @@ func _on_button_pressed() -> void:
 		var army = army_scene.instantiate()
 		army.army_name.text = str(soldier_number)
 		army.position = parent.get_parent().tilemap.map_to_local(parent.get_parent().home_tile)
-		army.tile = parent.get_parent().home_tile
+		army.current_tile = parent.get_parent().home_tile
 		army.name = ("Army" + str(soldier_number))
 		parent.get_parent().army_list.add_child(army)
 		

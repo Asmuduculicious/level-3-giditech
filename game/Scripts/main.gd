@@ -23,8 +23,10 @@ var absolute = false
 var left_span = 0
 var army_on_tile = []
 var selected_army = ""
-
 var army_generated = []
+
+var tile_position_before = Vector2i(0,0)
+var tile_position_after = Vector2i(0,0)
 
 func _ready() -> void:
 	for y in range(map_size*2 - 1):
@@ -50,7 +52,7 @@ func _ready() -> void:
 			tilemap.set_cell(Vector2i(-left_span, y), 0, Vector2i(1,3))
 			home_tile = Vector2i(-left_span, y)
 	
-	#print(global.tile_to_army)
+	print(global.tile_to_army)
 
 	day_label.text = "Day " + str(global.day)
 	submenu_open = false
@@ -85,6 +87,7 @@ func _input(event):
 		if mouse_start == mouse_end:
 			selected_tile_position = tilemap.local_to_map(mouse_end)
 			selected_tile_data = tilemap.get_cell_tile_data(selected_tile_position)
+			print(selected_tile_position)
 			# If they didn't click and drag get the data of the tile they selected
 			if mouse_on_tile == tilemap.local_to_map(mouse_end):
 			# Gets the tile only if they are actually clicking on a tile
@@ -107,8 +110,12 @@ func _input(event):
 					# Clears the array of all children after using it
 					global.tile_to_army[str(selected_tile_position)].clear()
 					# Removes the army on the selected tile
+					tile_position_before = selected_tile_position
 				else:
 					# if you have something selected
+					tile_position_after = selected_tile_position
+					# The tile you click becomes the new selected tile
+
 					for i in range(army_list.get_children().size()):
 						army_generated.append(army_list.get_children()[i])
 							# Add all children name to an array
@@ -118,8 +125,13 @@ func _input(event):
 						# Add the selected army's name back to the dictionary containing positions
 						army_list.get_children()[army_generated.find(global.selected[i])].position = tilemap.map_to_local(selected_tile_position)
 						# Finds all children that is selected in the instantiated scene and set their position to the new tile
+						army_list.get_children()[army_generated.find(global.selected[i])].current_tile = tile_position_before
+						army_list.get_children()[army_generated.find(global.selected[i])].target_tile = tile_position_after
+						army_list.get_children()[army_generated.find(global.selected[i])]._pathfinding()
+						# Does the really cool pathfinding
 					global.selected.clear()
 					army_generated.clear()
+
 
 
 func _on_zoom_out_pressed() -> void:
