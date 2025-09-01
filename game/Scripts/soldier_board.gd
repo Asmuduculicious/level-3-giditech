@@ -47,13 +47,13 @@ func _update_status() -> void:
 	elif current_weapon == "Level 3 gun":
 		attack_label.text = "10"
 		
-	if current_weapon == "Level 0 armor":
+	if current_armor == "Level 0 armor":
 		hp_label.text = "5"
-	elif current_weapon == "Level 1 armor":
+	elif current_armor == "Level 1 armor":
 		hp_label.text = "7"
-	elif current_weapon == "Level 2 armor":
+	elif current_armor == "Level 2 armor":
 		hp_label.text = "13"
-	elif current_weapon == "Level 3 armor":
+	elif current_armor == "Level 3 armor":
 		hp_label.text = "21"
 		
 	for i in range(global.armor.size()):

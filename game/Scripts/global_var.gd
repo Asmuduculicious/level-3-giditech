@@ -12,6 +12,8 @@ var day = 1
 var soldier_list = []
 
 var tile_to_army = {}
+var tile_to_enemy = {}
+var tile_info = {}
 
 var selected = []
 

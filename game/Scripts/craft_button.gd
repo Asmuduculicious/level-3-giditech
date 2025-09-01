@@ -11,7 +11,7 @@ extends Button
 
 func _on_pressed() -> void:
 	if (global.supply >= supply  
-	and global.woood >= wood
+	and global.wood >= wood
 	and global.steel >= steel
 	and global.money >= money):
 		global.supply -= supply

@@ -39,20 +39,26 @@ func _ready() -> void:
 			for x in range(map_size + y):
 				tilemap.set_cell(Vector2i(x - left_span,y), 0, Vector2i(0,1))
 				global.tile_to_army[str(Vector2i(x-left_span, y))] = []
+				global.tile_to_enemy[str(Vector2i(x-left_span, y))] = []
+				global.tile_info[str(Vector2i(x-left_span, y))] = []
 		elif y == map_size -1:
 			for x in range(map_size*2 -1):
 				tilemap.set_cell(Vector2i(x - left_span, y), 0, Vector2i(0,1))
 				global.tile_to_army[str(Vector2i(x-left_span, y))] = []
+				global.tile_to_enemy[str(Vector2i(x-left_span, y))] = []
+				global.tile_info[str(Vector2i(x-left_span, y))] = []
 		elif y > (map_size -1):
 			for x in range(map_size*3 - 2 - y):
 				tilemap.set_cell(Vector2i(x - left_span,y), 0, Vector2i(0,1))
 				global.tile_to_army[str(Vector2i(x-left_span, y))] = []
+				global.tile_to_enemy[str(Vector2i(x-left_span, y))] = []
+				global.tile_info[str(Vector2i(x-left_span, y))] = []
 		
 		if y == (map_size*2) -2:
 			tilemap.set_cell(Vector2i(-left_span, y), 0, Vector2i(1,3))
 			home_tile = Vector2i(-left_span, y)
 	
-	print(global.tile_to_army)
+	#print(global.tile_to_army)
 
 	day_label.text = "Day " + str(global.day)
 	submenu_open = false
@@ -84,53 +90,81 @@ func _input(event):
 	
 	if Input.is_action_just_released("left_click") and submenu_open == false:
 		mouse_end = get_local_mouse_position()
+		
 		if mouse_start == mouse_end:
-			selected_tile_position = tilemap.local_to_map(mouse_end)
-			selected_tile_data = tilemap.get_cell_tile_data(selected_tile_position)
-			print(selected_tile_position)
-			# If they didn't click and drag get the data of the tile they selected
-			if mouse_on_tile == tilemap.local_to_map(mouse_end):
-			# Gets the tile only if they are actually clicking on a tile
+			
+			if global.tile_to_army.has(str(tilemap.local_to_map(mouse_end))):
+				selected_tile_position = tilemap.local_to_map(mouse_end)
+				selected_tile_data = tilemap.get_cell_tile_data(selected_tile_position)
+				print(selected_tile_position)
+				
+					
 				if global.selected.size() == 0:
-					# If they haven't selected anything
+					
 					army_on_tile = global.tile_to_army[str(selected_tile_position)]
-					# Get an array of what is on the tile from the global variable that is an dictionary with the key being the tile
+					
+					for i in range(army_list.get_children().size()):
+						army_generated.append(army_list.get_children()[i].name)
+					
 					for i in range(army_on_tile.size()):
-					# Repeat for each thing in the array
-						for u in range(army_list.get_children().size()):
-							army_generated.append(army_list.get_children()[u].name)
-						# For all nodes instantiated, get their name to put into this array
 						army_list.get_children()[army_generated.find("Army" + str(army_on_tile[i]))].selected = true
-						# Get all the children, and get the ones selected and make them selected
-						global.selected.append(army_list.get_children()[army_generated.find("Army" + str(army_on_tile[i]))])
-						# Get all the selected children into an array
-						print(global.selected)
-						# Prints everything selected
+						global.selected.append(army_on_tile[i])
+					
 					army_generated.clear()
-					# Clears the array of all children after using it
 					global.tile_to_army[str(selected_tile_position)].clear()
-					# Removes the army on the selected tile
 					tile_position_before = selected_tile_position
 				else:
-					# if you have something selected
 					tile_position_after = selected_tile_position
-					# The tile you click becomes the new selected tile
-
+						
 					for i in range(army_list.get_children().size()):
-						army_generated.append(army_list.get_children()[i])
-							# Add all children name to an array
+						army_generated.append(army_list.get_children()[i].name)
+							
 					for i in range(global.selected.size()):
-						# Repeats for everything selected
-						global.tile_to_army[str(selected_tile_position)].append(army_list.get_children()[army_generated.find(global.selected[i])].army_name.text)
-						# Add the selected army's name back to the dictionary containing positions
-						army_list.get_children()[army_generated.find(global.selected[i])].position = tilemap.map_to_local(selected_tile_position)
-						# Finds all children that is selected in the instantiated scene and set their position to the new tile
-						army_list.get_children()[army_generated.find(global.selected[i])].current_tile = tile_position_before
-						army_list.get_children()[army_generated.find(global.selected[i])].target_tile = tile_position_after
+						global.tile_to_army[str(selected_tile_position)].append(global.selected[i])
+							# Repeats for everything selected
+							# Add the selected army's name back to the dictionary containing positions
+						army_list.get_children()[army_generated.find("Army" + str(global.selected[i]))].position = tilemap.map_to_local(selected_tile_position)
+							# Finds all children that is selected in the instantiated scene and set their position to the new tile
+						army_list.get_children()[army_generated.find("Army" + str(global.selected[i]))].current_tile = tile_position_before
+						army_list.get_children()[army_generated.find("Army" + str(global.selected[i]))].target_tile = tile_position_after
 						army_list.get_children()[army_generated.find(global.selected[i])]._pathfinding()
-						# Does the really cool pathfinding
+							# Does the really cool pathfinding
 					global.selected.clear()
 					army_generated.clear()
+						
+			else:
+				pass
+
+			#print(selected_tile_position)
+			#If they didn't click and drag get the data of the tile they selected
+			# Gets the tile only if they are actually clicking on a tile
+					# If they haven't selected anything
+					# Get an array of what is on the tile from the global variable that is an dictionary with the key being the tile
+					# Repeat for each thing in the array
+						# For all nodes instantiated, get their name to put into this array
+						# Get all the children, and get the ones selected and make them selected
+						# Get all the selected children into an array
+						#print(global.selected)
+						# Prints everything selected
+						# Clears the array of all children after using it
+					# Removes the army on the selected tile
+
+				#else:
+					## if you have something selected
+					## The tile you click becomes the new selected tile
+					## Add all children name to an array
+					#for i in range(global.selected.size()):
+						## Repeats for everything selected
+						#global.tile_to_army[str(selected_tile_position)].append(army_list.get_children()[army_generated.find(global.selected[i])].army_name.text)
+						## Add the selected army's name back to the dictionary containing positions
+						#army_list.get_children()[army_generated.find(global.selected[i])].position = tilemap.map_to_local(selected_tile_position)
+						## Finds all children that is selected in the instantiated scene and set their position to the new tile
+						#army_list.get_children()[army_generated.find(global.selected[i])].current_tile = tile_position_before
+						#army_list.get_children()[army_generated.find(global.selected[i])].target_tile = tile_position_after
+						#army_list.get_children()[army_generated.find(global.selected[i])]._pathfinding()
+						## Does the really cool pathfinding
+					#global.selected.clear()
+					#army_generated.clear()
 
 
 
@@ -150,6 +184,8 @@ func _next_day() -> void:
 	global.wood += global.day*2
 	global.money += global.day*10
 	ui_node._update_resources()
+
+
 
 
 func _on_area_2d_body_shape_entered(body_rid: RID, body: Node2D, body_shape_index: int, local_shape_index: int) -> void:

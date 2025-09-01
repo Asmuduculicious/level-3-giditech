@@ -19,31 +19,40 @@ var to_search = []
 var searched = []
 var tile_distance = {}
 var currently_searching = Vector2i(0,0)
-var distance = 0
+var result_distance = 0
 
 # Used for searching for target tile
 
 func _ready() -> void:
-	var tmap: TileMapLayer = get_parent().parent.tilemap
 	# Shortening variable name, tmap references the global tilemap
 	global.tile_to_army[str(current_tile)].append(army_name.text)
 	# When it is spawned, add it to the list of army currently on the tile
 	
 func _pathfinding() -> void:
-	var tmap: TileMapLayer = get_parent().parent.tilemap
 	
-	# Triggers when this is moving
+	# This triggers after you attempt to move an army
 	
-	to_search.append(tmap.local_to_map(tmap.map_to_local(current_tile) + Vector2(-96,0)))
-	to_search.append(tmap.local_to_map(tmap.map_to_local(current_tile) + Vector2(96,0)))
-	to_search.append(tmap.local_to_map(tmap.map_to_local(current_tile) + Vector2(-96,-111)))
-	to_search.append(tmap.local_to_map(tmap.map_to_local(current_tile) + Vector2(96,-111)))
-	to_search.append(tmap.local_to_map(tmap.map_to_local(current_tile) + Vector2(-96,111)))
-	to_search.append(tmap.local_to_map(tmap.map_to_local(current_tile) + Vector2(96,111)))
+	searched.append(current_tile)
+	# This adds the current tile to the searched tile list
 	
-	# Put all surrounding tile in an array
 	
-	for i in range(6):
+	
+	if global.tile_to_army.has(str(current_tile + Vector2i(-1,-1))):
+		to_search.append(current_tile + Vector2i(-1, -1))
+	if global.tile_to_army.has(str(current_tile + Vector2i(0,-1))):
+		to_search.append(current_tile + Vector2i(0, -1))
+	if global.tile_to_army.has(str(current_tile + Vector2i(-1, 0))):
+		to_search.append(current_tile + Vector2i(-1, 0))
+	if global.tile_to_army.has(str(current_tile + Vector2i(1,0))):
+		to_search.append(current_tile + Vector2i(1, 0))
+	if global.tile_to_army.has(str(current_tile + Vector2i(-1,1))):
+		to_search.append(current_tile + Vector2i(-1, 1))
+	if global.tile_to_army.has(str(current_tile + Vector2i(0,1))):
+		to_search.append(current_tile + Vector2i(0, 1))
+	
+	# Put all surrounding tile in an array to be searched
+	
+	for i in range(to_search.size()):
 		tile_distance[to_search[i]] = 1
 		
 	# Add them to dictionary with their starting distance being 1
@@ -51,56 +60,111 @@ func _pathfinding() -> void:
 	_search()
 	
 
-	 
 func _search() -> void:
-	var tmap: TileMapLayer = get_parent().parent.tilemap
+	
+	# This is self-repeating and will repeat until there are no more tile to search
+	
 	if to_search.size() > 0:
 		# If there are still tiles to search
 		currently_searching = to_search.pop_front()
+		
+		# Gets the first item in the list of things to search
+		
 		print(currently_searching)
-		print(tmap.get_cell_tile_data(currently_searching))
-		# Get the first one
-		if tmap.get_cell_tile_data(currently_searching).get_custom_data("obstacle") == false:
+		print(to_search)
+		
+		if global.tile_info.has(str(currently_searching)):
+			
+			if currently_searching == target_tile:
+				# When it has found the target tile
+				result_distance = tile_distance[currently_searching]
+				# Gets the resultant distance
+				print(tile_distance)
+				to_search.clear()
+				searched.clear()
+				tile_distance.clear()
+				# Clears everything
+			else:
+				# When it has found a tile that isn't the target
+				searched.append(currently_searching)
+				# Adds the current tile to the tiles searched
+				_get_surrounding(currently_searching, tile_distance[currently_searching] + 1)
+				# Get the surrounding tiles and add them to the to search list
+				# Their distance from the starting point is 1 further from the current
+				_search()
+		
+		if global.tile_info[str(currently_searching)].has("obstacle"):
 			pass
 			# Check if it's an obstacle, if it is then don't do anything
-		elif searched.has(currently_searching) == true:
+		elif searched.has(currently_searching):
 			pass
 			# Check if it's already checked, if it is then don't do anything
-		else:
-			if currently_searching == target_tile:
-			# If it has found the target tile
-				to_search.clear()
-				# Stop searching
-				distance = tile_distance[currently_searching]
-				# Get the amount of steps to get to there
-			else:
-				searched.append(currently_searching)
-				# If it's not the target tile add it to searched array
-				_get_surrounding(currently_searching, tile_distance[currently_searching] + 1)
-				# Get the surrounding tiles of the tile currently_searching
-				# As this is the second set of tiles, their tile distance increases by one
-			_search()
-			# Keep searching
-	else:
-		searched.clear()
-		tile_distance.clear()
-		print(distance)
 
 
 func _get_surrounding(tile, distance) -> void:
-	var tmap: TileMapLayer = get_parent().parent.tilemap
-	to_search.append(tmap.local_to_map(tmap.map_to_local(tile) + Vector2(-96,0)))
-	to_search.append(tmap.local_to_map(tmap.map_to_local(tile) + Vector2(96,0)))
-	to_search.append(tmap.local_to_map(tmap.map_to_local(tile) + Vector2(-96,-111)))
-	to_search.append(tmap.local_to_map(tmap.map_to_local(tile) + Vector2(96,-111)))
-	to_search.append(tmap.local_to_map(tmap.map_to_local(tile) + Vector2(-96,111)))
-	to_search.append(tmap.local_to_map(tmap.map_to_local(tile) + Vector2(96,111)))
-	# Get the surrounding tiles
+	
+	if global.tile_info.has(str(tile + Vector2i(-1, -1))):
+		# Checks if the tile to the up left exists
+		if (not searched.has(tile + Vector2i(-1, -1)) 
+		and not global.tile_info[str(tile + Vector2i(-1, -1))].has("obstacle")
+		and not to_search.has(tile + Vector2i(-1, -1))):
+			# Only runs if the tile haven't been checked before
+			# And it is not an obstacle
+			# And it is not already in the to search
+			tile_distance[tile + Vector2i(-1, -1)] = distance
+			# Add this to the tile distance dictionary
 
-	tile_distance.merge({tmap.local_to_map(tmap.map_to_local(tile) + Vector2(-96,0)): distance})
-	tile_distance.merge({tmap.local_to_map(tmap.map_to_local(tile) + Vector2(96,0)): distance})
-	tile_distance.merge({tmap.local_to_map(tmap.map_to_local(tile) + Vector2(-96,-111)): distance})
-	tile_distance.merge({tmap.local_to_map(tmap.map_to_local(tile) + Vector2(96,-111)): distance})
-	tile_distance.merge({tmap.local_to_map(tmap.map_to_local(tile) + Vector2(-96,111)): distance})
-	tile_distance.merge({tmap.local_to_map(tmap.map_to_local(tile) + Vector2(96,111)): distance})
-	# Add them to the dictionary with the value being the distance
+	if global.tile_info.has(str(tile + Vector2i(-1, -1))):
+		# Checks if the tile to the up left exists
+		if (not searched.has(tile + Vector2i(-1, -1)) 
+		and not global.tile_info[str(tile + Vector2i(-1, -1))].has("obstacle")
+		and not to_search.has(tile + Vector2i(-1, -1))):
+			# Only runs if the tile haven't been checked before
+			# And it is not an obstacle
+			# And it is not already in the to search
+			tile_distance[tile + Vector2i(-1, -1)] = distance
+			# Add this to the tile distance dictionary
+
+	if global.tile_info.has(str(tile + Vector2i(-1, -1))):
+		# Checks if the tile to the up left exists
+		if (not searched.has(tile + Vector2i(-1, -1)) 
+		and not global.tile_info[str(tile + Vector2i(-1, -1))].has("obstacle")
+		and not to_search.has(tile + Vector2i(-1, -1))):
+			# Only runs if the tile haven't been checked before
+			# And it is not an obstacle
+			# And it is not already in the to search
+			tile_distance[tile + Vector2i(-1, -1)] = distance
+			# Add this to the tile distance dictionary
+
+	if global.tile_info.has(str(tile + Vector2i(-1, -1))):
+		# Checks if the tile to the up left exists
+		if (not searched.has(tile + Vector2i(-1, -1)) 
+		and not global.tile_info[str(tile + Vector2i(-1, -1))].has("obstacle")
+		and not to_search.has(tile + Vector2i(-1, -1))):
+			# Only runs if the tile haven't been checked before
+			# And it is not an obstacle
+			# And it is not already in the to search
+			tile_distance[tile + Vector2i(-1, -1)] = distance
+			# Add this to the tile distance dictionary
+
+	if global.tile_info.has(str(tile + Vector2i(-1, -1))):
+		# Checks if the tile to the up left exists
+		if (not searched.has(tile + Vector2i(-1, -1)) 
+		and not global.tile_info[str(tile + Vector2i(-1, -1))].has("obstacle")
+		and not to_search.has(tile + Vector2i(-1, -1))):
+			# Only runs if the tile haven't been checked before
+			# And it is not an obstacle
+			# And it is not already in the to search
+			tile_distance[tile + Vector2i(-1, -1)] = distance
+			# Add this to the tile distance dictionary
+
+	if global.tile_info.has(str(tile + Vector2i(-1, -1))):
+		# Checks if the tile to the up left exists
+		if (not searched.has(tile + Vector2i(-1, -1)) 
+		and not global.tile_info[str(tile + Vector2i(-1, -1))].has("obstacle")
+		and not to_search.has(tile + Vector2i(-1, -1))):
+			# Only runs if the tile haven't been checked before
+			# And it is not an obstacle
+			# And it is not already in the to search
+			tile_distance[tile + Vector2i(-1, -1)] = distance
+			# Add this to the tile distance dictionary
