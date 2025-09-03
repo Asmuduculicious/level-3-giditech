@@ -84,17 +84,14 @@ func _search() -> void:
 		
 		# Gets the first item in the list of things to search
 		
-		print(currently_searching)
-		print(to_search)
 		
 		if global.tile_info.has(str(currently_searching)):
 			
 			if currently_searching == target_tile:
 				# When it has found the target tile
 				result_distance = tile_distance[currently_searching]
-				print(tile_distance)
-				print(result_distance)
 				# Gets the resultant distance
+				print(result_distance)
 				
 				to_search.clear()
 				searched.clear()
@@ -120,7 +117,6 @@ func _search() -> void:
 
 
 func _get_surrounding(tile, distance) -> void:
-	print("Yes")
 	if tile.y % 2 == 0:
 		if global.tile_info.has(str(tile + Vector2i(-1, -1))):
 			# Checks if the tile to the up left exists
