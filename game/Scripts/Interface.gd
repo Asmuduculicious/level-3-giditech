@@ -22,3 +22,33 @@ func _update_resources() -> void:
 
 func _process(float) -> void:
 	pass
+<<<<<<< HEAD
+=======
+	
+func _on_craft_button_pressed() -> void:
+	if craft_menu.visible == true:
+		craft_menu.visible = false
+	else:
+		craft_menu.visible = true
+		draft_menu.visible = false
+		trade_menu.visible = false
+
+func _on_draft_button_pressed() -> void:
+	for i in soldier_list.get_children():
+		i._update_status()
+	if draft_menu.visible == true:
+		draft_menu.visible = false
+	else:
+		craft_menu.visible = false
+		draft_menu.visible = true
+		trade_menu.visible = false
+
+func _on_trade_button_pressed() -> void:
+	if trade_menu.visible == true:
+		trade_menu.visible = false
+	else:
+		craft_menu.visible = false
+		draft_menu.visible = false
+		trade_menu.visible = true
+		
+>>>>>>> parent of baf870a (Army Movement and selection)

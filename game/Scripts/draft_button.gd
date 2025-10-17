@@ -1,6 +1,10 @@
 extends Button
 
 var soldier_number = 0
+<<<<<<< HEAD
+=======
+@export var army_scene: PackedScene
+>>>>>>> parent of baf870a (Army Movement and selection)
 @export var soldier_panel: PackedScene
 @export var parent: Node
 @export var type = 0
@@ -14,9 +18,20 @@ func _on_button_pressed() -> void:
 	if global.money >= money:
 		global.money -= money
 		parent._update_resources()
+<<<<<<< HEAD
+=======
+
+>>>>>>> parent of baf870a (Army Movement and selection)
 		soldier_number = len(global.soldier)
 		global.soldier.append([soldier_number, type, attack, hp, current_hp,""])
 		var soldier = soldier_panel.instantiate()
 		soldier.soldier_number = soldier_number
 		parent.soldier_list.add_child(soldier)
 		
+<<<<<<< HEAD
+=======
+		var army = army_scene.instanciate()
+		
+		
+		
+>>>>>>> parent of baf870a (Army Movement and selection)

@@ -5,7 +5,11 @@
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rtsqm"]
 bg_color = Color(1, 1, 1, 1)
 
+<<<<<<< HEAD
 [node name="ColorRect" type="PanelContainer" node_paths=PackedStringArray("unit_name", "type", "attack", "hp", "current_hp")]
+=======
+[node name="ColorRect" type="PanelContainer" node_paths=PackedStringArray("unit_name", "type", "attack", "hp", "current_hp", "weapon", "armor")]
+>>>>>>> parent of baf870a (Army Movement and selection)
 anchors_preset = -1
 anchor_right = 0.644965
 anchor_bottom = 0.0617284
@@ -16,6 +20,11 @@ type = NodePath("HBoxContainer/Type")
 attack = NodePath("HBoxContainer/Attack")
 hp = NodePath("HBoxContainer/HP")
 current_hp = NodePath("HBoxContainer/HP2")
+<<<<<<< HEAD
+=======
+weapon = NodePath("HBoxContainer/Weapon")
+armor = NodePath("HBoxContainer/Armor")
+>>>>>>> parent of baf870a (Army Movement and selection)
 metadata/_edit_use_anchors_ = true
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
